@@ -36,4 +36,4 @@ Dabei werden folgende Dienste bereitgestellt:
 
 ## Lösungsansatz
 
-![retry_example](retry_example.png?raw=true "Lösungsansatz")
+![retry_example](retry_examplel.png?raw=true "Lösungsansatz")
