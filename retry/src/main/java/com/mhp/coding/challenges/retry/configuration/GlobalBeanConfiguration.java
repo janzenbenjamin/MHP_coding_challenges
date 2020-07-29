@@ -1,5 +1,6 @@
 package com.mhp.coding.challenges.retry.configuration;
 
+import com.mhp.coding.challenges.retry.core.entities.RetryOperations;
 import com.mhp.coding.challenges.retry.core.inbound.NotificationHandler;
 import com.mhp.coding.challenges.retry.core.logic.NotificationService;
 import com.mhp.coding.challenges.retry.core.outbound.NotificationSender;
@@ -15,7 +16,6 @@ import org.springframework.retry.policy.SimpleRetryPolicy;
 import org.springframework.retry.support.RetryTemplate;
 
 import java.util.Properties;
-import java.util.SimpleTimeZone;
 
 /*
 @Configuration
@@ -53,6 +53,8 @@ public class GlobalBeanConfiguration {
         SimpleRetryPolicy retryPolicy = new SimpleRetryPolicy();
         retryPolicy.setMaxAttempts(5);
         retryTemplate.setRetryPolicy(retryPolicy);
+
+        retryTemplate.registerListener(new RetryOperations());
 
         return retryTemplate;
     }

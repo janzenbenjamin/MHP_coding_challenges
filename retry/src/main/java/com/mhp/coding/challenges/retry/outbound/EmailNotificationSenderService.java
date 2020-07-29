@@ -51,7 +51,6 @@ public class EmailNotificationSenderService implements NotificationSender {
 
     private JavaMailSender mailSender;
 
-    @Autowired
     public EmailNotificationSenderService(RetryTemplate retryTemplate, JavaMailSender mailSender) {
         this.retryTemplate = retryTemplate;
         this.mailSender = mailSender;
@@ -68,12 +67,14 @@ public class EmailNotificationSenderService implements NotificationSender {
             )
     )
     public void sendEmail(@Valid @NotNull EmailNotification emailNotification) {
+
         log.info("EmailNotificationSenderService SENDEMAIL");
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
         try {
             if (dto.count > maxRetries) {
+                dto.setCount(0);
                 throw new RuntimeException((String.format("Failed to send email to recipient: %s", emailNotification.getRecipient())));
             } else {
                 dto.setCount(dto.getCount() + 1);
@@ -97,5 +98,11 @@ public class EmailNotificationSenderService implements NotificationSender {
              */
         }
     }
+
+    @Recover
+    public void recover(RetryTransferDto dto, EmailNotification emailNotification) {
+        throw new RuntimeException(String.format("fail to retry 5 times: recipient = %s, error message : %s", emailNotification.getRecipient(), dto.getMessage()));
+    }
+
 }
 
