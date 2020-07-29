@@ -61,7 +61,9 @@ public class EmailNotificationSenderService implements NotificationSender {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
         try {
-            if (dto.count < maxRetries) {
+            if (dto.count > maxRetries) {
+                throw new RuntimeException((String.format("Failed to send email to recipient: %s", emailNotification.getRecipient())));
+            } else {
                 dto.setCount(dto.getCount() + 1);
 
                 mailMessage.setFrom(SENDER_ADDRESS);
