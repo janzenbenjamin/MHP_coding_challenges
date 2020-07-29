@@ -22,6 +22,19 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.logging.Logger;
 
+/*
+@Service
+    Markiert eine Klasse als Dienstklasse, ist also eine Spezialform der @Component-Annotation
+@Autowired
+    Teilt Spring mit, wo es mittels Injection Objekte in andere Klassen einfügen soll.
+    Die Injection erfolgt über den Typ des Objekts. standardmäßig werden diese Abhängigkeiten als required angesehen,
+    mittels @Autowired (required = false) kann man dieses Verhalten jedoch ausschalten.
+    Pro Klasse kann nur ein Konstruktor required sein.
+@Retryable
+    Methode versucht bei Fehler x erneut ausgeführt zu werden.
+@Backoff
+    Art und Weise des Wiederholungsversuchs
+ */
 
 @Service
 @Validated
@@ -36,7 +49,6 @@ public class EmailNotificationSenderService implements NotificationSender {
     private final RetryTemplate retryTemplate;
     private static final String SENDER_ADDRESS = "info@mhp.com";
 
-    @Autowired
     private JavaMailSender mailSender;
 
     @Autowired

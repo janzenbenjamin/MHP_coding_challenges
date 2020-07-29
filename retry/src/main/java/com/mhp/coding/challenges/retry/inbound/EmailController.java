@@ -13,6 +13,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.mail.MessagingException;
 
+/*
+@RestController
+    @Controller markiert eine Klasse als Controller.
+
+    Warum @RestController???
+
+@RequestMapping
+    bildet URLs auf Klassen oder Methoden ab.
+    @PostMapping; @GetMapping; @PutMapping --> verkürzte schreibweise.
+@RequestBody
+    Annotiert Methodenargumente von Anfragehandlern und deutet an, dass diese auf
+    den Wert des HTTP Anfrage-Body gebunden werden soll.
+
+ */
 @RestController
 @RequestMapping("/v1/emails")
 public class EmailController {

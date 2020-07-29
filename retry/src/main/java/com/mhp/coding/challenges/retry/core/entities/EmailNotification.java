@@ -4,16 +4,16 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 import javax.validation.constraints.NotBlank;
 
-@Data
-@Component
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+@Data //
+@Component //
+@Getter // Ersetzt theoretisch die Java schreibweise
+@Setter // Ersetzt theoretisch die Java schreibweise
+@AllArgsConstructor //
+@NoArgsConstructor //
+@ToString // Erstetzt die Methode zur Konvertierung
 public class EmailNotification {
 
-    @NotBlank
+    @NotBlank // darf nicht leer sein.
     public String recipient;
 
     @NotBlank

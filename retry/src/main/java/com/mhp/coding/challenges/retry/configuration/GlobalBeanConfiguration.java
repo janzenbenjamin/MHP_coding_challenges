@@ -4,6 +4,7 @@ import com.mhp.coding.challenges.retry.core.inbound.NotificationHandler;
 import com.mhp.coding.challenges.retry.core.logic.NotificationService;
 import com.mhp.coding.challenges.retry.core.outbound.NotificationSender;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -16,7 +17,20 @@ import org.springframework.retry.support.RetryTemplate;
 import java.util.Properties;
 import java.util.SimpleTimeZone;
 
+/*
 @Configuration
+    Markiert eine Klasse als Konfigurationsklasse für Bean Definitionen.
+@ComponentScan
+    Erlaubt das automatische Auffinden von Beans
+@Bean
+    Markiert eine Methode, die ein Bean-Objekt erzeugt, konfiguriert und initialisiert,
+    die vom Spring IOC Container im ApplicationCentext verwaltet werden soll.
+    Außerhalb der Confi-Class ist @Bean eine einfache Factory-Methode.
+    Methoden namens close() oder shutdown() werden automatisch beim beenden des COntainers ausgeführt.
+ */
+
+@Configuration
+@ComponentScan
 @EnableRetry
 public class GlobalBeanConfiguration {
 

@@ -8,6 +8,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.scheduling.annotation.EnableAsync;
 
+/*
+@SpringBootApplication
+	Wird der Hauptklasse der Anwendung zugewiesen, die im Top-Level-Paket liegen muss.
+	Spring Boot wird dadurch alle Unterordner scannen.
+	Kombiniert @Configuration; @EnableAutoConfiguration; @ComponentScan
+@EnableRetry
+	Erlaubt die Nutzung des Retry-Mechanismus.
+ */
+
 
 @SpringBootApplication
 @EnableAsync
